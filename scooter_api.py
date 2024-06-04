@@ -1,5 +1,3 @@
-import copy
-
 import allure
 import requests
 
@@ -19,12 +17,6 @@ class CreateCurrier:
     @allure.step('Генерация тестовых данных для 2-го курьера, все параметры заполнены')
     def generate_currier_data2(self):
         return data.TestDataCurrier.CREATE_COURIER_BODY2
-    # def generate_currier_data():
-    #     return {
-    #         "login": data.fake.user_name(),
-    #         "password": data.fake.password(),
-    #         "firstName": data.fake.first_name()
-    #     }
 
     @allure.step('Генерация тестовых данных для 2-го курьера, все параметры заполнены')
     def generate_second_currier_data(self):
@@ -33,16 +25,6 @@ class CreateCurrier:
     @allure.step('Генерация тестовых данных для создания курьера с пустыми параметрами')
     def generate_null_currier_data(self):
         return data.TestDataCurrier.NULL_BODY
-
-
-
-    # @allure.step('Cоздал курьера и положил в переменную логин')
-    # def get_login_from_body(self):
-    #     # body = self.generate_currier_data()  # Сгенерировал данные курьера
-    #     body = CreateCurrier.generate_currier_data(self)
-    #     body_login = body["login"]  # положил в переменную логин
-    #     CreateCurrier.create_currier(body)  # создал курьера
-    #     return body_login
 
     @allure.step('Cоздал курьера и положил в переменную логин')
     def get_login_from_body(self, body):
@@ -53,22 +35,6 @@ class CreateCurrier:
         body = key['login'] = value
         return body
 
-
-
-    # @allure.step('Создать курьера')
-    # def create_generated_currier(self):
-    #     body = CreateCurrier.generate_currier_data(self)  # Сгенерировал данные курьера
-    #     CreateCurrier.create_currier(body)  # создал курьера
-
-
-
-    # @allure.step('Заменил его логин на 1-го курьера')
-    # def change_login_to_first_currier(self, body):
-    #     # body2 = self.CreateCurrier.generate_currier_data(self)  # сгенерировал еше одного
-    #     body2 = CreateCurrier().generate_currier_data()
-    #     # body2 = CreateCurrier.change_login_to_first_currier(body)
-    #     body2["login"] = body
-    #     return body2
 
 class LoginCurrier:
     @allure.step('Вызов ручки авторизации курьера')
@@ -82,6 +48,7 @@ class LoginCurrier:
     @allure.step('Заменить параметр "логин или пароль"')
     def change_login_or_password(self, body, key, value):
         body[key] = value
+
 
 class CreateOrder:
     @allure.step('Вызов ручки создания заказа')
@@ -98,7 +65,7 @@ class CreateOrder:
 
     @allure.step('Добавить цвет')
     def add_color(self, body, color):
-        body["color"].append(color)# Добавить цвет
+        body["color"].append(color)  # Добавить цвет
 
     @allure.step('Удалить цвет')
     def delete_color(self, body):
@@ -112,4 +79,4 @@ class GetOrder:
 
     @allure.step('Получить боди для списка заказаов')
     def get_body_for_order_list(self):
-        return  data.TestDataGetListOrder.PARAMS_ORDERS
+        return data.TestDataGetListOrder.PARAMS_ORDERS

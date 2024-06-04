@@ -1,6 +1,5 @@
 import helper
 import scooter_api
-# from ... import scooter_api
 import pytest
 import allure
 
